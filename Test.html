@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Checker</title>
+    <script>
+        function checkResult() {
+            // Get the entered ID
+            var studentID = document.getElementById("studentID").value;
+
+            // Assume you have a data structure or API to fetch results based on the ID
+            // In this example, results are hardcoded for two students
+            var results = {
+                "230101": {
+                    "subject1": 85,
+                    "subject2": 90,
+                    "subject3": 78,
+                    "subject4": 92,
+                    "subject5": 88,
+                    "subject6": 95,
+                    "total": 528,
+                    "grade": "A",
+                    "position": 1
+                },
+                "230102": {
+                    "subject1": 78,
+                    "subject2": 85,
+                    "subject3": 92,
+                    "subject4": 88,
+                    "subject5": 90,
+                    "subject6": 82,
+                    "total": 515,
+                    "grade": "A-",
+                    "position": 2
+                }
+                // Add more results for other students as needed
+            };
+
+            // Check if the ID exists in the results data
+            if (results.hasOwnProperty(studentID)) {
+                // Display results in a table
+                var resultInfo = results[studentID];
+                var resultTable = "<table border='1'>";
+                resultTable += "<tr><th>Subject</th><th>Marks</th></tr>";
+                resultTable += "<tr><td>Subject 1</td><td>" + resultInfo.subject1 + "</td></tr>";
+                resultTable += "<tr><td>Subject 2</td><td>" + resultInfo.subject2 + "</td></tr>";
+                resultTable += "<tr><td>Subject 3</td><td>" + resultInfo.subject3 + "</td></tr>";
+                resultTable += "<tr><td>Subject 4</td><td>" + resultInfo.subject4 + "</td></tr>";
+                resultTable += "<tr><td>Subject 5</td><td>" + resultInfo.subject5 + "</td></tr>";
+                resultTable += "<tr><td>Subject 6</td><td>" + resultInfo.subject6 + "</td></tr>";
+                resultTable += "<tr><td>Total Marks</td><td>" + resultInfo.total + "</td></tr>";
+                resultTable += "<tr><td>Grade</td><td>" + resultInfo.grade + "</td></tr>";
+                resultTable += "<tr><td>Position</td><td>" + resultInfo.position + "</td></tr>";
+                resultTable += "</table>";
+
+                document.getElementById("resultContainer").innerHTML = resultTable;
+            } else {
+                // Display error message if ID is not found
+                document.getElementById("resultContainer").innerHTML = "Student ID not found.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Student Result Checker</h2>
+    <form>
+        <label for="studentID">Enter Your ID:</label>
+        <input type="text" id="studentID" name="studentID" required>
+        <button type="button" onclick="checkResult()">Check Result</button>
+    </form>
+    <div id="resultContainer"></div>
+</body>
+</html>
