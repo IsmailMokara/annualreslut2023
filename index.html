@@ -3,72 +3,921 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Result Checker</title>
-    <script>
-        function checkResult() {
-            // Get the entered ID
-            var studentID = document.getElementById("studentID").value;
-
-            // Assume you have a data structure or API to fetch results based on the ID
-            // In this example, results are hardcoded for two students
-            var results = {
-                "230101": {
-                    "subject1": 85,
-                    "subject2": 90,
-                    "subject3": 78,
-                    "subject4": 92,
-                    "subject5": 88,
-                    "subject6": 95,
-                    "total": 528,
-                    "grade": "A",
-                    "position": 1
-                },
-                "230102": {
-                    "subject1": 78,
-                    "subject2": 85,
-                    "subject3": 92,
-                    "subject4": 88,
-                    "subject5": 90,
-                    "subject6": 82,
-                    "total": 515,
-                    "grade": "A-",
-                    "position": 2
-                }
-                // Add more results for other students as needed
-            };
-
-            // Check if the ID exists in the results data
-            if (results.hasOwnProperty(studentID)) {
-                // Display results in a table
-                var resultInfo = results[studentID];
-                var resultTable = "<table border='1'>";
-                resultTable += "<tr><th>Subject</th><th>Marks</th></tr>";
-                resultTable += "<tr><td>Subject 1</td><td>" + resultInfo.subject1 + "</td></tr>";
-                resultTable += "<tr><td>Subject 2</td><td>" + resultInfo.subject2 + "</td></tr>";
-                resultTable += "<tr><td>Subject 3</td><td>" + resultInfo.subject3 + "</td></tr>";
-                resultTable += "<tr><td>Subject 4</td><td>" + resultInfo.subject4 + "</td></tr>";
-                resultTable += "<tr><td>Subject 5</td><td>" + resultInfo.subject5 + "</td></tr>";
-                resultTable += "<tr><td>Subject 6</td><td>" + resultInfo.subject6 + "</td></tr>";
-                resultTable += "<tr><td>Total Marks</td><td>" + resultInfo.total + "</td></tr>";
-                resultTable += "<tr><td>Grade</td><td>" + resultInfo.grade + "</td></tr>";
-                resultTable += "<tr><td>Position</td><td>" + resultInfo.position + "</td></tr>";
-                resultTable += "</table>";
-
-                document.getElementById("resultContainer").innerHTML = resultTable;
-            } else {
-                // Display error message if ID is not found
-                document.getElementById("resultContainer").innerHTML = "Student ID not found.";
-            }
+    <title>Korakot GPS Result 2023</title>
+    <style>
+        #searchInput {
+            margin-top: 10px;
+            padding: 5px;
         }
-    </script>
+
+        #searchResults {
+            margin-top: 10px;
+        }
+
+        #searchResults table {
+            border-collapse: collapse;
+            width: auto;
+        }
+
+        #searchResults th, #searchResults td {
+            border: 1px solid #ddd;
+            padding: 4px;
+            text-align: left;
+        }
+
+        #searchResults th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-    <h2>Student Result Checker</h2>
-    <form>
-        <label for="studentID">Enter Your ID:</label>
-        <input type="text" id="studentID" name="studentID" required>
-        <button type="button" onclick="checkResult()">Check Result</button>
-    </form>
-    <div id="resultContainer"></div>
+
+<h2>Result for Korakot GPS for 2023 (For Class 3 to 5)</h2>
+<h4>বিস্তারিত ফলাফল  ০৭ ডিসেম্বর সকাল ১০টায় বিদ্যালয়ে প্রকাশিত হবে এবং নম্বর ফর্দ প্রদান করা হবে। শিক্ষার্থীর আইডি হিসেবে 2023 লিখে দুই ডিজিটে শ্রেণি এবং দুই ডিজিটে রোল নম্বর লিখুন।  যেমন, ৫ম শ্রেণির রোল ১ এর ফলাফল জানতে 20230501 লিখে (ইংরেজিতে) সার্চ করুন</h4>
+<input type="text" id="searchInput" placeholder="Enter ID to search">
+<button onclick="searchTable()">Search</button>
+
+<div id="searchResults"></div>
+
+<script>
+    function searchTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = [
+            {
+                ID: "20230301",
+                Class: "তৃতীয়",
+                Roll: "১",
+                Name: "সামিরা জাহান মিশু",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৬২৩",
+                Percentage: "৮৩%",
+                Grade: "ক",
+                Place: "১",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+{
+ ID: "20230302",
+                Class: "তৃতীয়",
+                Roll: "২",
+                Name: "সামিয়া জাহান",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৪৮",
+                Percentage: "৭৩%",
+                Grade: "খ",
+                Place: "৫",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+            {
+                ID: "20230303",
+                Class: "তৃতীয়",
+                Roll: "৩",
+                Name: "তাহিয়া আক্তার শিফা",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৬৩",
+                Percentage: "৭৫%",
+                Grade: "খ",
+                Place: "৩",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230304",
+                Class: "তৃতীয়",
+                Roll: "৪",
+                Name: "নুসরাত জাহান বর্ষা",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৭৩",
+                Percentage: "৭৬%",
+                Grade: "খ",
+                Place: "২",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230305",
+                Class: "তৃতীয়",
+                Roll: "৫",
+                Name: "উম্মে সালমা প্রিয়সী",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫২৪",
+                Percentage: "৭০%",
+                Grade: "খ",
+                Place: "৬",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230306",
+                Class: "তৃতীয়",
+                Roll: "৬",
+                Name: "সুরাইয়া জাহান",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪৬২",
+                Percentage: "৬২%",
+                Grade: "খ",
+                Place: "৯",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230307",
+                Class: "তৃতীয়",
+                Roll: "৭",
+                Name: "আনিশা",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৪৯",
+                Percentage: "৭৩%",
+                Grade: "খ",
+                Place: "৪",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+			
+			          {
+                ID: "20230308",
+                Class: "তৃতীয়",
+                Roll: "৮",
+                Name: "আছমা আক্তার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪৬৩",
+                Percentage: "৬৫%",
+                Grade: "খ",
+                Place: "৮",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+			
+			
+			          {
+                ID: "20230309",
+                Class: "তৃতীয়",
+                Roll: "৯",
+                Name: "আফিয়া আক্তার ফাতেমা",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪৫৩",
+                Percentage: "৬০%",
+                Grade: "খ",
+                Place: "১০",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230310",
+                Class: "তৃতীয়",
+                Roll: "১০",
+                Name: "ফারিয়া আক্তার জেরিন",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪০৪",
+                Percentage: "৫৩%",
+                Grade: "গ",
+                Place: "১৫",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230311",
+                Class: "তৃতীয়",
+                Roll: "১১",
+                Name: "মাহমুদুল হাসান সৈকত",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪২১",
+                Percentage: "৫৬%",
+                Grade: "গ",
+                Place: "১৩",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+
+          {
+                ID: "20230312",
+                Class: "তৃতীয়",
+                Roll: "১২",
+                Name: "ফয়সাল",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩৬৩",
+                Percentage: "৪৮%",
+                Grade: "গ",
+                Place: "২২",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230313",
+                Class: "তৃতীয়",
+                Roll: "১৩",
+                Name: "আরফিন সোলতানা তানিশা",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩৩১",
+                Percentage: "৪৪%",
+                Grade: "গ",
+                Place: "২০",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230314",
+                Class: "তৃতীয়",
+                Roll: "১৪",
+                Name: "জান্নাতুল মাওয়া তানহা",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩৪১",
+                Percentage: "৪৫%",
+                Grade: "গ",
+                Place: "১৯",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+
+          {
+                ID: "20230315",
+                Class: "তৃতীয়",
+                Roll: "১৫",
+                Name: "সুমাইয়া",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪২৯",
+                Percentage: "৫৭%",
+                Grade: "গ",
+                Place: "১২",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230316",
+                Class: "তৃতীয়",
+                Roll: "১৬",
+                Name: "ফাতিহা জাহান",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪৩১",
+                Percentage: "৫৭%",
+                Grade: "গ",
+                Place: "১১",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230317",
+                Class: "তৃতীয়",
+                Roll: "১৭",
+                Name: "মোস্তাকিম মজুমদার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩৪৬",
+                Percentage: "৪৬%",
+                Grade: "গ",
+                Place: "১৭",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230318",
+                Class: "তৃতীয়",
+                Roll: "১৮",
+                Name: "মারজাহান আক্তার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩৮৬",
+                Percentage: "৫১%",
+                Grade: "গ",
+                Place: "১৬",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+
+          {
+                ID: "20230319",
+                Class: "তৃতীয়",
+                Roll: "১৯",
+                Name: "রাইজুল ইসলাম সামির",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩১৩",
+                Percentage: "৪২%",
+                Grade: "গ",
+                Place: "২০",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+
+
+          {
+                ID: "20230320",
+                Class: "তৃতীয়",
+                Roll: "২০",
+                Name: "আরিফ হোসেন",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "২৭৮",
+                Percentage: "৩৭%",
+                Grade: "-",
+                Place: "-",
+                Remark: "অনুত্তীর্ণ"
+            },
+			
+			          {
+                ID: "20230321",
+                Class: "তৃতীয়",
+                Roll: "২১",
+                Name: "তাসকিন হোসেন",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪১৮",
+                Percentage: "৫৫%",
+                Grade: "গ",
+                Place: "১৪",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+
+  {
+                ID: "20230322",
+                Class: "তৃতীয়",
+                Roll: "২২",
+                Name: "আদিফ",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "১৬৮",
+                Percentage: "২২%",
+                Grade: "-",
+                Place: "-",
+                Remark: "অনুত্তীর্ণ"
+            },
+
+			          {
+                ID: "20230323",
+                Class: "তৃতীয়",
+                Roll: "২৩",
+                Name: "ইসরাত জাহান",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫১৩",
+                Percentage: "৬৮%",
+                Grade: "খ",
+                Place: "৭",
+                Remark: "৪র্থ শ্রেণিতে উন্নীত"
+            },
+			
+			
+			
+			
+       {
+                ID: "20230401",
+                Class: "চতুর্থ",
+                Roll: "১",
+                Name: "মাইশা আক্তার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৭৫",
+                Percentage: "৭৭%",
+                Grade: "খ",
+                Place: "১",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+
+{
+ ID: "20230402",
+                Class: "চতুর্থ",
+                Roll: "২",
+                Name: "মেহেদী হাসান",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫২৯",
+                Percentage: "৭০%",
+                Grade: "খ",
+                Place: "৫",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+
+            {
+                ID: "20230403",
+                Class: "চতুর্থ",
+                Roll: "৩",
+                Name: "তানভীরুল ইসলাম",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৬০",
+                Percentage: "৭৫%",
+                Grade: "খ",
+                Place: "৩",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230404",
+                Class: "চতুর্থ",
+                Roll: "৪",
+                Name: "সাদিয়া আক্তার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৬৭",
+                Percentage: "৭৬%",
+                Grade: "খ",
+                Place: "২",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230405",
+                Class: "চতুর্থ",
+                Roll: "৫",
+                Name: "ইমতিয়াজ মাহমুদ নিবীর",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫০৫",
+                Percentage: "৬৮%",
+                Grade: "খ",
+                Place: "৬",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230406",
+                Class: "চতুর্থ",
+                Roll: "৬",
+                Name: "ফারহানা আক্তার ফারিকা",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৫৪",
+                Percentage: "৭৪%",
+                Grade: "খ",
+                Place: "৪",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+
+
+          {
+                ID: "20230407",
+                Class: "চতুর্থ",
+                Roll: "৭",
+                Name: "তাসরিফ আহম্মেদ",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪২৭",
+                Percentage: "৫৭%",
+                Grade: "গ",
+                Place: "১১",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+			
+			          {
+                ID: "20230408",
+                Class: "চতুর্থ",
+                Roll: "৮",
+                Name: "আরমান হোসেন নাহিদ",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪৮৯",
+                Percentage: "৬৫%",
+                Grade: "খ",
+                Place: "৯",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+			
+			
+			          {
+                ID: "20230409",
+                Class: "চতুর্থ",
+                Roll: "৯",
+                Name: "বিবি খাদিজা",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫০৭",
+                Percentage: "৬৮%",
+                Grade: "খ",
+                Place: "৭",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230410",
+                Class: "চতুর্থ",
+                Roll: "১০",
+                Name: "ফাতেমা আক্তার প্রিতু",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪৮২",
+                Percentage: "৬৪%",
+                Grade: "খ",
+                Place: "১০",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230411",
+                Class: "চতুর্থ",
+                Roll: "১১",
+                Name: "আফসানা রুহি",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩০০",
+                Percentage: "৪০%",
+                Grade: "গ",
+                Place: "১৩",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+
+
+          {
+                ID: "20230412",
+                Class: "চতুর্থ",
+                Roll: "১২",
+                Name: "সানজিদা আক্তার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫০৬",
+                Percentage: "৬৮%",
+                Grade: "খ",
+                Place: "৮",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230413",
+                Class: "চতুর্থ",
+                Roll: "১৩",
+                Name: "সালমা আক্তার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩৬৮",
+                Percentage: "৪৯%",
+                Grade: "গ",
+                Place: "১৪",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+
+          {
+                ID: "20230414",
+                Class: "চতুর্থ",
+                Roll: "১৪",
+                Name: "সানজিদা",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "২৩৯",
+                Percentage: "৩১%",
+                Grade: "-",
+                Place: "-",
+                Remark: "অনুত্তীর্ণ"
+            },
+
+
+          {
+                ID: "20230415",
+                Class: "চতুর্থ",
+                Roll: "১৫",
+                Name: "জাবেদ হোসেন সিয়াম",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "১৪৮",
+                Percentage: "১৯%",
+                Grade: "-",
+                Place: "-",
+                Remark: "অনুত্তীর্ণ"
+            },
+
+          {
+                ID: "20230416",
+                Class: "চতুর্থ",
+                Roll: "১৬",
+                Name: "রাকিবুল হাসান দিহান",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪০২",
+                Percentage: "৫৩%",
+                Grade: "গ",
+                Place: "১২",
+                Remark: "৫ম শ্রেণিতে উন্নীত"
+            },
+
+
+{
+                ID: "20230501",
+                Class: "পঞ্চম",
+                Roll: "১",
+                Name: "নাবিহা জাহান নোভা",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৬৩৭",
+                Percentage: "৮৫%",
+                Grade: "ক",
+                Place: "১",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+{
+ ID: "20230502",
+                Class: "পঞ্চম",
+                Roll: "২",
+                Name: "রাজ্জাতুল রাহা",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৬৩৩",
+                Percentage: "৮৪%",
+                Grade: "ক",
+                Place: "২",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+            {
+                ID: "20230503",
+                Class: "পঞ্চম",
+                Roll: "৩",
+                Name: "লামিসা জাহান",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৬০৫",
+                Percentage: "৮১%",
+                Grade: "ক",
+                Place: "৩",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+          {
+                ID: "20230504",
+                Class: "পঞ্চম",
+                Roll: "৪",
+                Name: "মানস কুমার দাস মিশুক",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৪৮",
+                Percentage: "৭৩%",
+                Grade: "খ",
+                Place: "৫",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+          {
+                ID: "20230505",
+                Class: "পঞ্চম",
+                Roll: "৫",
+                Name: "ফারিয়া সুলতানা তন্নী",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৮১",
+                Percentage: "৭৭%",
+                Grade: "খ",
+                Place: "৪",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+          {
+                ID: "20230506",
+                Class: "পঞ্চম",
+                Roll: "৬",
+                Name: "ইসতিয়াক রহমান অনন্ত",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫২৪",
+                Percentage: "৭০%",
+                Grade: "খ",
+                Place: "১০",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+
+          {
+                ID: "20230507",
+                Class: "পঞ্চম",
+                Roll: "৭",
+                Name: "সালমা আক্তার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৩০",
+                Percentage: "৭১%",
+                Grade: "খ",
+                Place: "৯",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+			
+			          {
+                ID: "20230508",
+                Class: "পঞ্চম",
+                Roll: "৮",
+                Name: "লিমা আক্তার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৪৪",
+                Percentage: "৭৩%",
+                Grade: "খ",
+                Place: "৬",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+			
+			
+			          {
+                ID: "20230509",
+                Class: "পঞ্চম",
+                Roll: "৯",
+                Name: "মুনতাহা আক্তার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪৭৯",
+                Percentage: "৬৪%",
+                Grade: "খ",
+                Place: "১২",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+          {
+                ID: "20230510",
+                Class: "পঞ্চম",
+                Roll: "১০",
+                Name: "হোছনা আক্তার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৩৬",
+                Percentage: "৭১%",
+                Grade: "খ",
+                Place: "৭",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+          {
+                ID: "20230511",
+                Class: "পঞ্চম",
+                Roll: "১১",
+                Name: "সানজিদা জাহান নিহা",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪৬২",
+                Percentage: "৬২%",
+                Grade: "খ",
+                Place: "১৪",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+
+          {
+                ID: "20230512",
+                Class: "পঞ্চম",
+                Roll: "১২",
+                Name: "শামিম মজমদার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩৬৫",
+                Percentage: "৪৯%",
+                Grade: "গ",
+                Place: "২০",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+          {
+                ID: "20230513",
+                Class: "পঞ্চম",
+                Roll: "১৩",
+                Name: "সাব্বির হোসেন",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪১৮",
+                Percentage: "৫৫%",
+                Grade: "গ",
+                Place: "১৬",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+          {
+                ID: "20230514",
+                Class: "পঞ্চম",
+                Roll: "১৪",
+                Name: "সাবিনা আক্তার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪৭০",
+                Percentage: "৬২%",
+                Grade: "খ",
+                Place: "১৩",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+
+          {
+                ID: "20230515",
+                Class: "পঞ্চম",
+                Roll: "১৫",
+                Name: "ফারদিল ফারাবী তনব",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩৮৭",
+                Percentage: "৫২%",
+                Grade: "গ",
+                Place: "১৮",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+          {
+                ID: "20230516",
+                Class: "পঞ্চম",
+                Roll: "১৬",
+                Name: "আফসারুল ইসলাম ছোহান",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩০০",
+                Percentage: "৪০%",
+                Grade: "গ",
+                Place: "২২",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+          {
+                ID: "20230517",
+                Class: "পঞ্চম",
+                Roll: "১৭",
+                Name: "মাহফুজুল ইসলাম রাশেদ",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "২৪১",
+                Percentage: "৩৪%",
+                Grade: "-",
+                Place: "-",
+                Remark: "অনুত্তীর্ণ"
+            },
+
+          {
+                ID: "20230518",
+                Class: "পঞ্চম",
+                Roll: "১৮",
+                Name: "আফরিন সুলতানা",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৪৪২",
+                Percentage: "৫৯%",
+                Grade: "গ",
+                Place: "১৫",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+
+          {
+                ID: "20230519",
+                Class: "পঞ্চম",
+                Roll: "১৯",
+                Name: "জেরিন আক্তার",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৫৩৩",
+                Percentage: "৭১%",
+                Grade: "খ",
+                Place: "৮",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+
+
+          {
+                ID: "20230520",
+                Class: "পঞ্চম",
+                Roll: "২০",
+                Name: "আবির",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩৪৮",
+                Percentage: "৬৯%",
+                Grade: "খ",
+                Place: "১১",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+			
+			          {
+                ID: "20230521",
+                Class: "পঞ্চম",
+                Roll: "২১",
+                Name: "জান্নাতুল ফেরদাউস পায়েল",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩৫০",
+                Percentage: "৪৭%",
+                Grade: "গ",
+                Place: "২১",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+  {
+                ID: "20230522",
+                Class: "পঞ্চম",
+                Roll: "২২",
+                Name: "সুমাইয়া ইসলাম",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩৭৫",
+                Percentage: "৫০%",
+                Grade: "গ",
+                Place: "১৯",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            },
+
+			          {
+                ID: "20230523",
+                Class: "পঞ্চম",
+                Roll: "২৩",
+                Name: "আবদুর রহিম",
+                "Total Marks": "৭৫০",
+                "Number Obtained": "৩৯৩",
+                Percentage: "৫২%",
+                Grade: "গ",
+                Place: "১৭",
+                Remark: "৬ষ্ঠ শ্রেণিতে ভর্তিযোগ্য"
+            }
+
+        ];
+
+
+var searchResults = document.getElementById("searchResults");
+        searchResults.innerHTML = ""; // Clear previous results
+
+        var resultTable = document.createElement("table");
+        var headerRow = document.createElement("tr");
+        headerRow.innerHTML = "<th>Field</th><th>Value</th>";
+        resultTable.appendChild(headerRow);
+
+        for (i = 0; i < table.length; i++) {
+            if (table[i].ID.toUpperCase() === filter) {
+                // Display results in a table, dynamically adjusting column width
+                for (var key in table[i]) {
+                    if (table[i].hasOwnProperty(key)) {
+                        var resultRow = document.createElement("tr");
+                        var fieldCell = document.createElement("td");
+                        var valueCell = document.createElement("td");
+                        fieldCell.textContent = key;
+                        valueCell.textContent = table[i][key];
+                        resultRow.appendChild(fieldCell);
+                        resultRow.appendChild(valueCell);
+                        resultTable.appendChild(resultRow);
+
+                        // Dynamically adjust column width based on text length
+                        var fieldWidth = key.length * 10; // Adjust multiplier as needed
+                        var valueWidth = table[i][key].length * 10;
+                        fieldCell.style.width = fieldWidth + "px";
+                        valueCell.style.width = valueWidth + "px";
+                    }
+                }
+                break; // Stop searching after finding a match
+            }
+        }
+
+        if (resultTable.rows.length > 1) {
+            searchResults.appendChild(resultTable);
+        } else {
+            // Display message if no match is found
+            var noResultMessage = document.createElement("p");
+            noResultMessage.innerHTML = "No matching record found for ID: " + filter;
+            searchResults.appendChild(noResultMessage);
+        }
+    }
+</script>
+
 </body>
 </html>
